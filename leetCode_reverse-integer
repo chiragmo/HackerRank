@@ -1,0 +1,47 @@
+/* 
+Level : Easy
+Link: https://leetcode.com/problems/reverse-integer/description/
+Status: All test cases passed
+*/
+
+class Solution {
+    public int reverse(int x) {
+         Long myLong= new Long(x);
+        long original = myLong;
+        long i = 0;
+        if(original < 0) {
+          myLong = -myLong;
+       }
+        long a = 10, b= 0;
+        long sum = 0;
+        while(myLong > 0){
+            b = myLong%10;
+            myLong = myLong/10;
+            sum = sum*a + b  ;
+            i++;
+        }
+        if(original < 0) {
+          sum = -sum;
+       }
+       if(sum <= Integer.MAX_VALUE && sum >= Integer.MIN_VALUE) {
+         return (int)sum;  
+       }  
+        return 0;
+    }
+}
+
+public class MainClass {
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        while ((line = in.readLine()) != null) {
+            int x = Integer.parseInt(line);
+            
+            int ret = new Solution().reverse(x);
+            
+            String out = String.valueOf(ret);
+            
+            System.out.print(out);
+        }
+    }
+}
